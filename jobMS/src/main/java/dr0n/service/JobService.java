@@ -1,8 +1,7 @@
 package dr0n.service;
 
 
-import dr0n.Job;
-import org.springframework.stereotype.Service;
+import dr0n.persistent.model.Job;
 
 import java.util.List;
 

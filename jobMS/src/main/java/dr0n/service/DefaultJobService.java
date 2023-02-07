@@ -1,12 +1,11 @@
 package dr0n.service;
 
-import dr0n.Job;
+import dr0n.persistent.model.Job;
 import dr0n.mappers.JobToEntityMapper;
 import dr0n.persistent.model.JobEntity;
 import dr0n.persistent.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ public class DefaultJobService implements JobService {
 
     private final JobRepository jobRepository;
     private final JobToEntityMapper jobToEntityMapper;
+    //private final CompanyRepository companyRepository;
     @Override
     public Job getById(Long id) {
         //FIXME: add exception
@@ -40,7 +40,7 @@ public class DefaultJobService implements JobService {
     }
 
     public List<Job> getJobsByTag(Long tag_id) {
-        Iterable<JobEntity> iterable = jobRepository.findByTag_Id(tag_id);
+        Iterable<JobEntity> iterable = jobRepository.findByTagId(tag_id);
         return getJobs(iterable);
     }
 

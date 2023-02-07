@@ -1,4 +1,4 @@
-package dr0n;
+package dr0n.persistent.model;
 
 import lombok.Value;
 
@@ -13,6 +13,6 @@ public class Job {
     Date postedDate;
     String contactPhone;
     String contactName;
-    boolean isAvailable;
+    Boolean isAvailable;
     Company company;
 }

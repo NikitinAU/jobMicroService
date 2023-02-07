@@ -1,14 +1,25 @@
 package dr0n.mappers;
 
-import dr0n.Company;
+import dr0n.persistent.model.Company;
 import dr0n.persistent.model.CompanyEntity;
-import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-@Component
-@Mapper(componentModel = "spring")
 public interface CompanyToEntityMapper {
-    CompanyEntity companyToCompanyEntity(Company company);
-    Company companyEntityToCompany(CompanyEntity companyEntity);
+    default Company entityToCompany(CompanyEntity companyEntity){
+        return new Company(companyEntity.getId(),
+                companyEntity.getName(),
+                companyEntity.getDescription(),
+                companyEntity.getFoundationDate(),
+                companyEntity.getAmountOfEmployees(),
+                companyEntity.getCeoName(),
+                companyEntity.getStars());
+    }
+    default CompanyEntity companyToEntity(Company company){
+        return new CompanyEntity(company.getId(),
+                company.getName(),
+                company.getDescription(),
+                company.getFoundationDate(),
+                company.getAmountOfEmployees(),
+                company.getCeoName(),
+                company.getStars());
+    }
 }

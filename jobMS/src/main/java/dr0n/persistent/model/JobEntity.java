@@ -1,19 +1,27 @@
 package dr0n.persistent.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jdk.jfr.ContentType;
 import lombok.*;
+import org.hibernate.Hibernate;
+import org.springframework.http.MediaType;
 
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "job", schema = "public", catalog = "JobForJunior")
-@Data
+@JsonFormat
+@Table(name = "job")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder(toBuilder = true)
+
 public class JobEntity {
     @GeneratedValue(generator = "job_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "job_id_seq", sequenceName = "job_id_seq")
+    @SequenceGenerator(name = "job_id_seq", sequenceName = "job_id_seq", allocationSize = 1)
     @Id
     @Column(name = "id")
     private Long id;
@@ -35,8 +43,22 @@ public class JobEntity {
     @Column(name = "contact_name")
     private String contactName;
     
-    @Column(name = "is_avaliable")
-    private boolean isAvaliable;
-    @ManyToOne
+    @Column(name = "is_available")
+    private Boolean isAvailable;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private CompanyEntity company;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        JobEntity jobEntity = (JobEntity) o;
+        return id != null && Objects.equals(id, jobEntity.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

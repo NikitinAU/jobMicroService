@@ -1,4 +1,4 @@
-package dr0n;
+package dr0n.persistent.model;
 
 import lombok.Value;
 
@@ -10,7 +10,7 @@ public class Company {
     String name;
     String description;
     Date foundationDate;
-    int amountOfEmployees;
+    Integer amountOfEmployees;
     String ceoName;
     Double stars;
 }

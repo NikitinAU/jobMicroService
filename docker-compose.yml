@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: pg
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./ms1/src/main/resources/db_scripts:/docker-entrypoint-initdb.d
+
+  my-tomcat:
+    build: ./ms1
+    container_name: my-tomcat
+    ports:
+      - "8080:8080"
+
+  my-bot:
+    build: ./bot
+    container_name: my-bot

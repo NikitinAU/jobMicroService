@@ -12,15 +12,11 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring5</artifactId>
-            <version>3.1.1.RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.1.6.Final</version>
         </dependency>
+
     </dependencies>
     <build>
         <finalName>jobMS</finalName>
